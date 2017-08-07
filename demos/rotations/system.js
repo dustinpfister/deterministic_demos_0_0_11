@@ -13,8 +13,8 @@ ds.setup({
         h : 64,
 
         radian : 0,
-        rx : 16,
-        ry : 50
+        rx : 0,
+        ry : 0
 
     },
 
@@ -24,14 +24,14 @@ ds.setup({
         this.box.radian = Math.PI * 2 * state.per;
 
         // rotation point
-        this.box.rx = this.box.w * state.per;
-		this.box.ry = Math.pow(2, Math.log(this.box.h) / Math.log(2) * state.per);
+        //this.box.rx = this.box.w * state.per;
+        //this.box.ry = Math.pow(2, Math.log(this.box.h) / Math.log(2) * state.per);
 
         // position
-        this.box.x = (320 - this.box.w) * state.per;
+        this.box.x = 20 + (280 - this.box.w) * state.per;
         let base = 1.5;
-        let pow = Math.log(240 - this.box.h) / Math.log(base);
-        this.box.y = Math.pow(base, pow * state.per);
+        let pow = Math.log(200 - this.box.h) / Math.log(base);
+        this.box.y = 20 + Math.pow(base, pow * state.per);
 
     },
 
@@ -52,6 +52,10 @@ ds.setup({
         return function (canvas, ctx) {
 
             ds.cls();
+
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(this.box.x, this.box.y, this.box.w, this.box.h);
 
             ctx.fillStyle = '#00af00';
 
