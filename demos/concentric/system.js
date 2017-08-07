@@ -6,6 +6,8 @@ ds.setup({
     maxFrame : 75,
 
     base : 1.5,
+    baseRadian : 0,
+    maxRDelta : 10,
     circles_count : 8,
     circles : [],
 
@@ -18,8 +20,8 @@ ds.setup({
 
             this.circles.push({
 
-                x : 160,
-                y : 120,
+                x : 160 + Math.cos(this.baseRadian) * (c * this.maxRDelta) * state.bias,
+                y : 120 + Math.sin(this.baseRadian) * (c * this.maxRDelta) * state.bias,
                 r : 10 + Math.pow(this.base, c * state.bias)
 
             });
