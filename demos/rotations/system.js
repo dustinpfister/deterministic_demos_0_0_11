@@ -25,6 +25,7 @@ ds.setup({
 
         // rotation point
         this.box.rx = this.box.w * state.per;
+		this.box.ry = Math.pow(2, Math.log(this.box.h) / Math.log(2) * state.per);
 
         // position
         this.box.x = (320 - this.box.w) * state.per;
