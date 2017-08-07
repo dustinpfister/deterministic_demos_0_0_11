@@ -4,13 +4,14 @@ ds.setup({
 
     maxFrame : 75,
 
-    radius : 20,
+    radius : 0,
+    maxRadius : 80,
     radian : 0,
     cx : 160,
     cy : 120,
 
     // circles
-    color : '#00ffff',
+    color : 'rgba(0,255,0,1)',
     size : 5,
     radiusAjust : 0,
     maxSize : 20,
@@ -21,10 +22,13 @@ ds.setup({
     forFrame : function (state) {
 
         this.radian = Math.PI * 2 * state.per;
-        this.radius = 40 + 80 * state.bias;
+        this.radius = 40 + this.maxRadius * state.bias;
 
         this.radiusAjust = -this.radius * state.bias;
         this.size = 5 + (this.maxSize - 5) * state.bias;
+
+        let c = Math.floor(255 * state.bias);
+        this.color = 'rgba(0,' + c + ',' + (255 - c) + ',1)';
 
     },
 
@@ -66,6 +70,13 @@ ds.setup({
 
     // controls
     controls : {
+
+        // max radius of main circle
+        maxRadius : function (e, sys) {
+
+            sys.maxRadius = 10 + e.target.value / 100 * 170;
+
+        },
 
         // change start size
         count : function (e, sys, state) {
