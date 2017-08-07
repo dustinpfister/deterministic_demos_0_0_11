@@ -76,13 +76,16 @@ ds.setup({
     // controls
     controls : {
 
-        /*
-        base : function (e, sys) {
+        box_rx : function (e, sys) {
 
-        sys.base = 1 + e.target.value / 100 * 8;
+            sys.box.rx = e.target.value / 100 * sys.box.w;
 
         },
-         */
+        box_ry : function (e, sys) {
+
+            sys.box.ry = e.target.value / 100 * sys.box.h;
+
+        }
 
     }
 
