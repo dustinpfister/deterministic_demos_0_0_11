@@ -6,8 +6,10 @@ ds.setup({
     maxFrame : 75,
 
     base : 1.5,
-    baseRadian : 0,
+    startRadian : 0,
     maxRDelta : 10,
+    radianBase : 0,
+
     circles_count : 8,
     circles : [],
 
@@ -18,10 +20,12 @@ ds.setup({
         let c = this.circles_count;
         while (c--) {
 
+            let r = this.startRadian + (Math.pow(this.radianBase, c) * state.bias);
+
             this.circles.push({
 
-                x : 160 + Math.cos(this.baseRadian) * (c * this.maxRDelta) * state.bias,
-                y : 120 + Math.sin(this.baseRadian) * (c * this.maxRDelta) * state.bias,
+                x : 160 + Math.cos(r) * (c * this.maxRDelta) * state.bias,
+                y : 120 + Math.sin(r) * (c * this.maxRDelta) * state.bias,
                 r : 10 + Math.pow(this.base, c * state.bias)
 
             });
@@ -59,6 +63,18 @@ ds.setup({
         base : function (e, sys) {
 
             sys.base = 1 + e.target.value / 100 * 8;
+
+        },
+
+        startRadian : function (e, sys) {
+
+            sys.startRadian = e.target.value / 100 * Math.PI * 2;
+
+        },
+
+        radianBase : function (e, sys) {
+
+            sys.radianBase = e.target.value / 100 * 2;
 
         }
 
