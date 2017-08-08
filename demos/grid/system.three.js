@@ -1,4 +1,4 @@
-// this must be used with node, and there sever.js file in root 
+// this must be used with node, and there sever.js file in root
 // because of security errors when useing file://
 
 
@@ -20,16 +20,26 @@ loader.load(
 
     'tx1.png',
 
-    function () {
+    function (tex) {
 
     // cube
-    var geometry = new THREE.BoxGeometry(8, 6, 1);
+    var geometry = new THREE.BoxGeometry(8, 8, 8);
+    /*var material = new THREE.MeshBasicMaterial({
+    color : 0x00ff00
+    });
+     */
+	 
+	 tex.mapping = 8;
+	 //console.log(tex);
+	 
     var material = new THREE.MeshBasicMaterial({
-            color : 0x00ff00
+            map : tex
         });
     var cube = new THREE.Mesh(geometry, material);
     scene.add(cube);
 
+	console.log(cube);
+	
     cube.position.x = 0;
     cube.position.y = 0;
     cube.position.z = -1;
