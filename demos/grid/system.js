@@ -1,8 +1,10 @@
 // grid
 
-var distance = function (x1, y1, z1, x2, y2, z2) {
+let d3d = function (x1, y1, z1, x2, y2, z2) {
 
-    return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2) + Math.pow(z1 - z2, 2));
+    let n = Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2) + Math.pow(z1 - z2, 2);
+
+    return Math.sqrt(n);
 
 };
 
@@ -26,6 +28,8 @@ ds.setup({
 
     grid : {
 
+        x : 0,
+        y : 0,
         z : 0,
 
         cw : 32,
@@ -42,6 +46,9 @@ ds.setup({
         this.grid.cells = [];
         let y = 0,
         x,
+        d = d3d(
+                this.grid.x, this.grid.y, this.grid.z,
+                this.cam.x, this.cam.y, this.cam.z),
         g;
 
         // figure grid
@@ -57,7 +64,11 @@ ds.setup({
 
                 };
 
-                g.vp = ((this.cam.vd - Math.abs(this.grid.z - this.cam.z)) / this.cam.vd);
+                //g.vp = ((this.cam.vd - Math.abs(this.grid.z - this.cam.z)) / this.cam.vd);
+
+                g.vp = (this.cam.vd - d) / this.cam.vd;
+                if(g.vp < 0){ g.vp = 0;}
+
                 g.w = g.aw * g.vp;
                 g.h = g.ah * g.vp;
 
@@ -120,13 +131,13 @@ ds.setup({
 
         cam_x : function (e, sys) {
 
-            sys.cam.x = e.target.value / 100 * 1000;
+            sys.cam.x = e.target.value / 100 * 320;
 
         },
 
         cam_y : function (e, sys) {
 
-            sys.cam.y = e.target.value / 100 * 1000;
+            sys.cam.y = e.target.value / 100 * 240;
 
         },
 
