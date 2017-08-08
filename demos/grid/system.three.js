@@ -1,3 +1,6 @@
+// this must be used with node, and there sever.js file in root 
+// because of security errors when useing file://
+
 
 // scene, camera, and renderer
 var scene = new THREE.Scene();
@@ -11,42 +14,51 @@ camera.position.z = 10;
 camera.position.x = 0;
 camera.position.y = 0;
 
-// cube
-var geometry = new THREE.BoxGeometry(8, 6, 1);
-var material = new THREE.MeshBasicMaterial({
-        color : 0x00ff00
-    });
-var cube = new THREE.Mesh(geometry, material);
-scene.add(cube);
+var loader = new THREE.TextureLoader();
 
-cube.position.x = 0;
-cube.position.y = 0;
-cube.position.z = -1;
+loader.load(
 
-camera.lookAt(new THREE.Vector3(0, 0, 0));
+    'tx1.png',
 
-// render
-var i = 0, iMax = 500;
-var loop = function () {
+    function () {
 
+    // cube
+    var geometry = new THREE.BoxGeometry(8, 6, 1);
+    var material = new THREE.MeshBasicMaterial({
+            color : 0x00ff00
+        });
+    var cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
 
+    cube.position.x = 0;
+    cube.position.y = 0;
+    cube.position.z = -1;
 
-    requestAnimationFrame(loop);
+    camera.lookAt(new THREE.Vector3(0, 0, 0));
 
-    var per = i / iMax,
-    bias = 1 - Math.abs(.5 - per) / .5;
+    // render
+    var i = 0,
+    iMax = 500;
+    var loop = function () {
 
-    camera.position.z = 4 + 15 * bias;
+        requestAnimationFrame(loop);
 
-    i += 1;
-    if (i === iMax) {
+        var per = i / iMax,
+        bias = 1 - Math.abs(.5 - per) / .5;
 
-        i = 0;
+        camera.position.z = 4 + 15 * bias;
 
-    }
+        i += 1;
+        if (i === iMax) {
 
-    renderer.render(scene, camera);
+            i = 0;
 
-};
+        }
 
-loop();
+        renderer.render(scene, camera);
+
+    };
+
+    loop();
+
+});
