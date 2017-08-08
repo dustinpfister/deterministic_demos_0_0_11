@@ -10,9 +10,9 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.body.appendChild(renderer.domElement);
 
-camera.position.z = 10;
-camera.position.x = 10;
-camera.position.y = 10;
+camera.position.z = 20;
+camera.position.x = 3;
+camera.position.y = 0;
 
 var loader = new THREE.TextureLoader();
 
@@ -23,7 +23,7 @@ loader.load(
     function (tex) {
 
     // cube
-    var geometry = new THREE.BoxGeometry(8, 8, 8);
+    var geometry = new THREE.BoxGeometry(8, 8, 1);
     /*var material = new THREE.MeshBasicMaterial({
     color : 0x00ff00
     });
@@ -44,7 +44,7 @@ loader.load(
     cube.position.y = 0;
     cube.position.z = -1;
 
-    camera.lookAt(new THREE.Vector3(0, 0, 0));
+    //camera.lookAt(new THREE.Vector3(0, 0, 0));
 
     // render
     var i = 0,
