@@ -7,8 +7,8 @@ ds.setup({
 
     cam : {
 
-        x : 320,
-        y : 240,
+        x : 0,
+        y : 0,
 
         z : 0,
         vd : 1000, // view distance
@@ -38,6 +38,8 @@ ds.setup({
         let y = 0,
         x,
         g;
+
+        // figure grid
         while (y < this.grid.h) {
 
             x = 0;
@@ -45,16 +47,17 @@ ds.setup({
 
                 g = {
 
-                    x : x * this.grid.cw,
-                    y : y * this.grid.ch,
                     aw : this.grid.cw, // actual width
-                    ah : this.grid.ch,
-                    vp : 1 // view percent
+                    ah : this.grid.ch
 
                 };
 
-                g.w = g.aw;
-                g.h = g.ah;
+                g.vp = ((this.cam.vd - Math.abs(this.grid.z - this.cam.z)) / this.cam.vd);
+                g.w = g.aw * g.vp;
+                g.h = g.ah * g.vp;
+
+                g.x = x * g.w + this.cam.x;
+                g.y = y * g.h + this.cam.y;
 
                 this.grid.cells.push(g);
 
@@ -110,13 +113,23 @@ ds.setup({
     // controls
     controls : {
 
-        /*
-        box_rx : function (e, sys) {
+        cam_x : function (e, sys) {
 
-        sys.box.rx = e.target.value / 100 * sys.box.w;
+            sys.cam.x = e.target.value / 100 * 1000;
 
         },
-         */
+
+        cam_y : function (e, sys) {
+
+            sys.cam.y = e.target.value / 100 * 1000;
+
+        },
+
+        cam_z : function (e, sys) {
+
+            sys.cam.z = e.target.value / 100 * 1000;
+
+        }
 
     }
 
