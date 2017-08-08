@@ -47,13 +47,14 @@ ds.setup({
 
                     x : x * this.grid.cw,
                     y : y * this.grid.ch,
-                    aw : this.grid.cw,
+                    aw : this.grid.cw, // actual width
                     ah : this.grid.ch,
-                    w : this.grid.cw,
-                    h : this.grid.ch,
                     vp : 1 // view percent
 
                 };
+
+                g.w = g.aw;
+                g.h = g.ah;
 
                 this.grid.cells.push(g);
 
