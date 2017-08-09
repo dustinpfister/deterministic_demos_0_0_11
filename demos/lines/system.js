@@ -7,7 +7,7 @@ ds.setup({
     lines : [
 
         // literal
-        [0, 0, 12, 14, 22, 38],
+        //[0, 0, 12, 14, 22, 38],
 
         // generated
         (function () {
@@ -16,10 +16,10 @@ ds.setup({
             x,
             y,
             p = 0;
-            while (p < 5) {
+            while (p < 24) {
 
-                x = 25 + 2 * p;
-                y = 25 + Math.floor(Math.pow(1.5, p));
+                x = 5;
+                y = 5 + 10 * p;
 
                 lineData.push(x);
                 lineData.push(y);
@@ -35,7 +35,17 @@ ds.setup({
     ],
 
     // what to find an a for frame basis
-    forFrame : function (state) {},
+    forFrame : function (state) {
+		
+		this.lines.forEach(function(){
+			
+			
+			
+			
+		});
+		
+		
+	},
 
     // draw the state of the box to the canvas
     draw : function (canvas, ctx) {
