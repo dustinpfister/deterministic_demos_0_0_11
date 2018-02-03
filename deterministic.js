@@ -26,7 +26,7 @@ let ds = (function () {
 
     },
 
-    // the curent state values that are used in the systems forFrame method
+    // the current state values that are used in the systems forFrame method
     state = {
 
         frame : 0,
